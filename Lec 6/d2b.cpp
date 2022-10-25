@@ -1,31 +1,32 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
-void print_binary(int n) {
-
+void print_binary(int num) {
+    // `result` stores the binary notation of `num` in decimal format
     int result = 0;
-    while (!(n == 0 | n == -1)) {
 
-        int bit = n & 1;
+    // It ignores leading zeros and leading ones
+    int place_value = 1;
+    while (!(num == 0 | num == -1)) {
+        // Extracting the rightmost bit from `num`
+        int bit = num & 1;
 
-        result *= 10;
-        result += bit;
+        // appending `bit` to `result`
+        result = result + (bit * place_value);
 
-        n = n >> 1;
+        // Shifting `num` to the right
+        // so that second bit (from right) now become the rightmost bit
+        num = num >> 1;
+        place_value *= 10;
     }
 
     cout << result << endl;
-
 }
-int main() {
 
-    int number = 6;
-    // int twosCompliment = ~number + 1;
+int main() {
+    int number = 5;
+    int neg_number = ~number + 1; // Took 2's compliment of number
 
     print_binary(number);
-    // print_binary(twosCompliment);
-
-
-
-    return 0;
+    print_binary(neg_number);
 }
